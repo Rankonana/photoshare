@@ -22,13 +22,15 @@
 </head>
 <body>
     <div class="container">
-        <h2>{{ folder.name }} Details</h2>
-        <p><a href="{% url 'create_folder' %}">Create Another Folder</a></p>
+        <h2>{{ folder.name }} Folder Details</h2>
+        <p><a href="{% url 'create_folder' %}" class="btn btn-primary">Create Another Folder</a></p>
 
         <div class="row photo-container">
             {% for photo in photos %}
                 <div class="col-md-3">
-                    <img src="{{ photo.image.url }}" alt="Photo" class="img-fluid photo-thumbnail">
+                    <a href="{% url 'photo_detail' photo_id=photo.id %}">
+                        <img src="{{ photo.image.url }}" alt="Photo" class="img-fluid photo-thumbnail">
+                    </a>
                 </div>
             {% endfor %}
         </div>

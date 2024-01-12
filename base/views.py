@@ -22,6 +22,21 @@ def folder_detail(request, folder_id):
     photos = Photo.objects.filter(folder=folder)
     return render(request, 'base/folder_detail.html', {'folder': folder, 'photos': photos})
 
+# def upload_photo(request, folder_id):
+#     folder = Folder.objects.get(pk=folder_id)
+#     if request.method == 'POST':
+#         form = PhotoForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             photo = form.save(commit=False)
+#             photo.folder = folder
+#             photo.save()
+#             # return redirect('base/folder_detail', folder_id=folder.id)
+#             return redirect('folder_detail', folder_id=folder.id)
+#     else:
+#         form = PhotoForm()
+#     return render(request, 'base/upload_photo.html', {'form': form, 'folder': folder})
+
+# photos/views.py
 def upload_photo(request, folder_id):
     folder = Folder.objects.get(pk=folder_id)
     if request.method == 'POST':
@@ -30,8 +45,14 @@ def upload_photo(request, folder_id):
             photo = form.save(commit=False)
             photo.folder = folder
             photo.save()
-            # return redirect('base/folder_detail', folder_id=folder.id)
             return redirect('folder_detail', folder_id=folder.id)
     else:
         form = PhotoForm()
-    return render(request, 'base/upload_photo.html', {'form': form, 'folder': folder})
+    return render(request, 'upload_photo.html', {'form': form, 'folder': folder})
+
+
+# photos/views.py
+def photo_detail(request, photo_id):
+    photo = Photo.objects.get(pk=photo_id)
+    return render(request, 'base/photo_detail.html', {'photo': photo})
+
