@@ -1,0 +1,50 @@
+<!-- photos/templates/folder_detail.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{ folder.name }} Details</title>
+    <!-- Add Bootstrap CDN link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Add your custom styles here */
+        .photo-container {
+            margin-top: 20px;
+        }
+        .photo-thumbnail {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>{{ folder.name }} Details</h2>
+        <p><a href="{% url 'create_folder' %}">Create Another Folder</a></p>
+
+        <div class="row photo-container">
+            {% for photo in photos %}
+                <div class="col-md-3">
+                    <img src="{{ photo.image.url }}" alt="Photo" class="img-fluid photo-thumbnail">
+                </div>
+            {% endfor %}
+        </div>
+
+        <h3>Create Photo</h3>
+        <form method="post" enctype="multipart/form-data" action="{% url 'upload_photo' folder_id=folder.id %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Upload Photo</button>
+        </form>
+        <p><a href="{% url 'folder_detail' folder_id=folder.id %}" class="btn btn-secondary mt-3">Back to {{ folder.name }} Details</a></p>
+    </div>
+
+    <!-- Add Bootstrap JS and Popper.js CDN links -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

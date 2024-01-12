@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Photo</title>
+</head>
+<body>
+    <h2>Upload Photo to {{ folder.name }}</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload Photo</button>
+    </form>
+    <p><a href="{% url 'folder_detail' folder_id=folder.id %}">Back to {{ folder.name }} Details</a></p>
+</body>
+</html>
