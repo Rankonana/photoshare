@@ -29,7 +29,7 @@
             {% for photo in photos %}
                 <div class="col-md-3">
                     <a href="{% url 'photo_detail' photo_id=photo.id %}">
-                        <img src="{{ photo.image.url }}" alt="Photo" class="img-fluid photo-thumbnail">
+                        <img src="{{ photo.image.url }}" alt="Photo" class="img-fluid photo-thumbnail img-thumbnail">
                     </a>
                 </div>
             {% endfor %}

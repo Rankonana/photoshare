@@ -7,13 +7,26 @@
     <title>{{ photo.filename }} Details</title>
     <!-- Add Bootstrap CDN link -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Add your custom styles here */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .container {
+            flex: 1;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h2>{{ photo.image.url }} Details</h2>
-        <img src="{{ photo.image.url }}" alt="Photo" class="img-fluid">
-        <p><a href="{{ photo.image.url }}" download class="btn btn-primary">Download Photo</a></p>
-        <p><a href="{% url 'folder_detail' folder_id=photo.folder.id %}" class="btn btn-secondary">Back to {{ photo.folder.name }} Details</a></p>
+        <h2>{{ photo.filename }} Details</h2>
+        <div class="d-flex justify-content-center align-items-center flex-column" style="min-height: 100%;">
+            <img src="{{ photo.image.url }}" alt="Photo" class="img-fluid mb-4 " width="304" height="236">
+            <p><a href="{{ photo.image.url }}" download class="btn btn-primary">Download Photo</a></p>
+            <p><a href="{% url 'folder_detail' folder_id=photo.folder.id %}" class="btn btn-secondary">Back to {{ photo.folder.name }} Details</a></p>
+        </div>
     </div>
 
     <!-- Add Bootstrap JS and Popper.js CDN links -->

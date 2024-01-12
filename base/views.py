@@ -48,7 +48,7 @@ def upload_photo(request, folder_id):
             return redirect('folder_detail', folder_id=folder.id)
     else:
         form = PhotoForm()
-    return render(request, 'upload_photo.html', {'form': form, 'folder': folder})
+    return render(request, 'base/upload_photo.html', {'form': form, 'folder': folder})
 
 
 # photos/views.py
